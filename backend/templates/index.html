@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MiniTube</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>Upload Video</h1>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="video" accept="video/*" required>
+    <button type="submit">Upload</button>
+  </form>
+
+  <h2>Videos</h2>
+  {% for vid in videos %}
+    <div>
+      <video width="320" controls>
+        <source src="{{ url_for('uploaded_file', filename=vid) }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p>{{ vid }}</p>
+    </div>
+  {% endfor %}
+</body>
+</html>
